@@ -1,0 +1,80 @@
+/* Color tokens (light). Contrast on white: primary 5.36:1, secondary text 4.76:1. */
+:root,
+[data-bs-theme="light"] {
+    --bs-primary: #0e7490;
+    --bs-primary-rgb: 14, 116, 144;
+    --bs-link-color: #0e7490;
+    --bs-link-color-rgb: 14, 116, 144;
+    --bs-link-hover-color: #155e75;
+    /* Bootstrap 5.3 paints links from the -rgb variables, so the hover needs one too. */
+    --bs-link-hover-color-rgb: 21, 94, 117;
+    --bs-secondary-color: #64748b;
+    --bs-tertiary-bg: #f8fafc;
+}
+
+/* Buttons read their own variables; --bs-primary alone does not recolor them. */
+.btn-primary {
+    --bs-btn-bg: var(--bs-primary);
+    --bs-btn-border-color: var(--bs-primary);
+    --bs-btn-hover-bg: var(--bs-link-hover-color);
+    --bs-btn-hover-border-color: var(--bs-link-hover-color);
+    --bs-btn-active-bg: var(--bs-link-hover-color);
+    --bs-btn-active-border-color: var(--bs-link-hover-color);
+}
+
+.btn-outline-primary {
+    --bs-btn-color: var(--bs-primary);
+    --bs-btn-border-color: var(--bs-primary);
+    --bs-btn-hover-bg: var(--bs-primary);
+    --bs-btn-hover-border-color: var(--bs-primary);
+    --bs-btn-active-bg: var(--bs-primary);
+    --bs-btn-active-border-color: var(--bs-primary);
+}
+
+.navbar {
+    --bs-navbar-active-color: var(--bs-primary);
+}
+
+/* One focus ring everywhere; the listed components would otherwise keep Bootstrap's blue glow. */
+:focus-visible,
+.btn:focus-visible,
+.nav-link:focus-visible,
+.navbar-toggler:focus-visible {
+    outline: 2px solid var(--bs-primary);
+    outline-offset: 2px;
+    box-shadow: none;
+}
+
+/* Above the sticky navbar (z-index 1020) so the focused link is not hidden. */
+.skip-link {
+    z-index: 1030;
+}
+
+/* Touch targets of at least 44 x 44 px. */
+.btn,
+.navbar-nav .nav-link {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 2.75rem;
+}
+
+.navbar-nav .nav-link {
+    justify-content: flex-start;
+}
+
+.navbar-toggler,
+.touch-target {
+    min-width: 2.75rem;
+    min-height: 2.75rem;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+    .card-lift {
+        transition: transform 0.15s ease-out;
+    }
+
+    .card-lift:hover {
+        transform: translateY(-2px);
+    }
+}
