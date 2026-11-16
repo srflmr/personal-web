@@ -6,6 +6,8 @@ return [
 
     'role' => 'Cyber Threat Detection Engineer',
 
+    'company' => 'PT Korelasi Persada Indonesia',
+
     'tagline' => "Every log tells a story. I read between the lines. Detection engineering isn't just my job; it's how I protect what matters.",
 
     'email' => 'isrofil.amar@gmail.com',

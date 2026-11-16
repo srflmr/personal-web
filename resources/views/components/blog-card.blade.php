@@ -1,11 +1,14 @@
 @props(['blog'])
 
-<article class="card card-lift h-100 rounded-4 shadow-sm">
+<article class="card card-lift h-100 rounded-4 shadow-sm overflow-hidden">
+    {{-- Decorative illustration, so the alt text is empty. --}}
+    <img class="card-img-top card-image" src="{{ asset($blog['image']) }}" alt="" width="640" height="360" loading="lazy">
+
     <div class="card-body d-flex flex-column">
         <p class="font-monospace small text-body-secondary mb-2">
             {{ $blog['category'] }}
             <span aria-hidden="true">&middot;</span>
-            <time datetime="{{ $blog['published_at'] }}">{{ date('d M Y', strtotime($blog['published_at'])) }}</time>
+            <time datetime="{{ $blog['published_at'] }}">{{ date('j M Y', strtotime($blog['published_at'])) }}</time>
         </p>
 
         <h3 class="card-title h5">
