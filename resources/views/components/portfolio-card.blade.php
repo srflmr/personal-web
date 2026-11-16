@@ -1,6 +1,9 @@
 @props(['project'])
 
-<article class="card card-lift h-100 rounded-4 shadow-sm">
+<article class="card card-lift h-100 rounded-4 shadow-sm overflow-hidden">
+    {{-- Decorative illustration, so the alt text is empty. --}}
+    <img class="card-img-top card-image" src="{{ asset($project['image']) }}" alt="" width="640" height="360" loading="lazy">
+
     <div class="card-body d-flex flex-column">
         @isset($project['context'])
             <p class="font-monospace small text-body-secondary mb-2">{{ $project['context'] }}</p>
