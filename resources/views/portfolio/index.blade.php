@@ -5,6 +5,8 @@
 @section('content')
     <h1 class="mb-4">Portfolio</h1>
 
+    <x-section-heading title="Projects" :subtitle="count($projects) . ' projects, newest first'" />
+
     <div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-4">
         @forelse ($projects as $project)
             <div class="col">

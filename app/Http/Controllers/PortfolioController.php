@@ -25,6 +25,8 @@ class PortfolioController extends Controller
 
         return view('portfolio.show', [
             'project' => $project,
+            // Paragraphs are separated by a blank line in the data file.
+            'bodyParagraphs' => preg_split('/\R{2,}/', trim($project['body'])),
         ]);
     }
 }
