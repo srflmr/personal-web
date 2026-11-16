@@ -1,22 +1,20 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Contact | {{ config('site.name') }}</title>
-</head>
-<body>
+@extends('layout.default')
+
+@section('title', 'Contact | ' . config('site.name'))
+
+@section('content')
     <h1>Contact</h1>
-    <ul>
-        <li>Email: <a href="mailto:{{ config('site.email') }}">{{ config('site.email') }}</a></li>
+
+    <ul class="list-unstyled mb-0">
+        <li class="mb-2">
+            <i class="bi bi-envelope me-2" aria-hidden="true"></i>Email:
+            <a href="mailto:{{ config('site.email') }}">{{ config('site.email') }}</a>
+        </li>
         @foreach (config('site.social') as $link)
-            <li>
-                {{ $link['label'] }}:
+            <li class="mb-2">
+                <i class="bi bi-{{ $link['icon'] }} me-2" aria-hidden="true"></i>{{ $link['label'] }}:
                 <a href="{{ $link['url'] }}" target="_blank" rel="noopener noreferrer">{{ $link['handle'] }}</a>
             </li>
         @endforeach
     </ul>
-
-    <p><a href="{{ route('home') }}">Back to home</a></p>
-</body>
-</html>
+@endsection

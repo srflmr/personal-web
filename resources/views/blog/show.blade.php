@@ -1,31 +1,44 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>{{ $blog['title'] }} | {{ config('site.name') }}</title>
-</head>
-<body>
-    <h1>{{ $blog['title'] }}</h1>
-    <p>{{ $blog['category'] }}, {{ $blog['published_at'] }}, {{ $readingMinutes }} min read</p>
+@extends('layout.default')
 
-    {{-- Safe to print unescaped: the controller renders Markdown with raw HTML stripped. --}}
-    {!! $contentHtml !!}
+@section('title', $blog['title'] . ' | ' . config('site.name'))
 
-    <h2>Sources</h2>
-    <ul>
-        @foreach ($blog['sources'] as $source)
-            <li><a href="{{ $source['url'] }}" target="_blank" rel="noopener noreferrer">{{ $source['title'] }}</a></li>
-        @endforeach
-    </ul>
+@section('content')
+    <article class="mb-5">
+        <h1>{{ $blog['title'] }}</h1>
 
-    <h2>More articles</h2>
-    <ul>
-        @foreach ($otherBlogs as $other)
-            <li><a href="{{ route('blog.show', $other['slug']) }}">{{ $other['title'] }}</a></li>
-        @endforeach
-    </ul>
+        <p class="font-monospace small text-body-secondary">
+            {{ $blog['category'] }}
+            <span aria-hidden="true">&middot;</span>
+            <time datetime="{{ $blog['published_at'] }}">{{ date('d M Y', strtotime($blog['published_at'])) }}</time>
+            <span aria-hidden="true">&middot;</span>
+            {{ $readingMinutes }} min read
+        </p>
 
-    <p><a href="{{ route('blog.index') }}">Back to blog</a></p>
-</body>
-</html>
+        {{-- Safe to print unescaped: the controller renders Markdown with raw HTML stripped. --}}
+        {!! $contentHtml !!}
+    </article>
+
+    <section class="mb-5">
+        <x-section-heading title="Sources" />
+
+        <ul class="mb-0">
+            @foreach ($blog['sources'] as $source)
+                <li><a href="{{ $source['url'] }}" target="_blank" rel="noopener noreferrer">{{ $source['title'] }}</a></li>
+            @endforeach
+        </ul>
+    </section>
+
+    <section class="mb-5">
+        <x-section-heading title="More articles" />
+
+        <div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-4">
+            @foreach ($otherBlogs as $other)
+                <div class="col">
+                    <x-blog-card :blog="$other" />
+                </div>
+            @endforeach
+        </div>
+    </section>
+
+    <a href="{{ route('blog.index') }}">Back to blog</a>
+@endsection

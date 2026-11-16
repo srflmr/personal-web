@@ -1,34 +1,40 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>{{ $project['title'] }} | {{ config('site.name') }}</title>
-</head>
-<body>
+@extends('layout.default')
+
+@section('title', $project['title'] . ' | ' . config('site.name'))
+
+@section('content')
     <h1>{{ $project['title'] }}</h1>
-    <p>{{ $project['published_at'] }}</p>
-    @isset($project['context'])
-        <p>{{ $project['context'] }}</p>
-    @endisset
-    <p>{{ $project['description'] }}</p>
-    <p>{{ $project['body'] }}</p>
 
-    <h2>Technologies</h2>
-    <ul>
-        @foreach ($project['technologies'] as $technology)
-            <li>{{ $technology }}</li>
-        @endforeach
-    </ul>
+    <p class="font-monospace small text-body-secondary">
+        <time datetime="{{ $project['published_at'] }}">{{ date('d M Y', strtotime($project['published_at'])) }}</time>
+        @isset($project['context'])
+            <span aria-hidden="true">&middot;</span>
+            {{ $project['context'] }}
+        @endisset
+    </p>
 
-    @if ($project['demo_url'])
-        <p><a href="{{ $project['demo_url'] }}" target="_blank" rel="noopener noreferrer">Live demo</a></p>
-    @elseif ($project['repository_url'])
-        <p><a href="{{ $project['repository_url'] }}" target="_blank" rel="noopener noreferrer">Source code</a></p>
-    @else
-        <p>Private project</p>
-    @endif
+    <p class="lead">{{ $project['description'] }}</p>
+    <p class="mb-5">{{ $project['body'] }}</p>
 
-    <p><a href="{{ route('portfolio.index') }}">Back to portfolio</a></p>
-</body>
-</html>
+    <section class="mb-5">
+        <x-section-heading title="Technologies" />
+
+        <ul class="list-unstyled d-flex flex-wrap gap-2 mb-0">
+            @foreach ($project['technologies'] as $technology)
+                <li class="badge bg-body-tertiary text-body border font-monospace fw-normal">{{ $technology }}</li>
+            @endforeach
+        </ul>
+    </section>
+
+    <div class="d-flex flex-wrap align-items-center gap-3">
+        @if ($project['demo_url'])
+            <a class="btn btn-primary" href="{{ $project['demo_url'] }}" target="_blank" rel="noopener noreferrer">Live demo</a>
+        @elseif ($project['repository_url'])
+            <a class="btn btn-outline-primary" href="{{ $project['repository_url'] }}" target="_blank" rel="noopener noreferrer">Source code</a>
+        @else
+            <span class="badge bg-body-tertiary text-body border font-monospace fw-normal">Private project</span>
+        @endif
+
+        <a href="{{ route('portfolio.index') }}">Back to portfolio</a>
+    </div>
+@endsection

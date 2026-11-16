@@ -1,23 +1,19 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Portfolio | {{ config('site.name') }}</title>
-</head>
-<body>
-    <h1>Portfolio</h1>
-    <ul>
-        @forelse ($projects as $project)
-            <li>
-                <a href="{{ route('portfolio.show', $project['slug']) }}">{{ $project['title'] }}</a>:
-                {{ $project['description'] }}
-            </li>
-        @empty
-            <li>No projects yet.</li>
-        @endforelse
-    </ul>
+@extends('layout.default')
 
-    <p><a href="{{ route('home') }}">Back to home</a></p>
-</body>
-</html>
+@section('title', 'Portfolio | ' . config('site.name'))
+
+@section('content')
+    <h1 class="mb-4">Portfolio</h1>
+
+    <div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-4">
+        @forelse ($projects as $project)
+            <div class="col">
+                <x-portfolio-card :project="$project" />
+            </div>
+        @empty
+            <div class="col">
+                <p class="text-body-secondary mb-0">No projects yet.</p>
+            </div>
+        @endforelse
+    </div>
+@endsection

@@ -1,15 +1,9 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>About | {{ $profile['name'] }}</title>
-</head>
-<body>
-    <h1>About</h1>
-    <p>{{ $profile['name'] }}, {{ $profile['role'] }}</p>
-    <p>{{ $profile['tagline'] }}</p>
+@extends('layout.default')
 
-    <p><a href="{{ route('home') }}">Back to home</a></p>
-</body>
-</html>
+@section('title', 'About | ' . config('site.name'))
+
+@section('content')
+    <h1>About</h1>
+    <p class="lead mb-2">{{ $profile['name'] }}, {{ $profile['role'] }}</p>
+    <p class="text-body-secondary mb-0">{{ $profile['tagline'] }}</p>
+@endsection

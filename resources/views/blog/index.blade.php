@@ -1,24 +1,19 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Blog | {{ config('site.name') }}</title>
-</head>
-<body>
-    <h1>Blog</h1>
-    <ul>
-        @forelse ($blogs as $blog)
-            <li>
-                <a href="{{ route('blog.show', $blog['slug']) }}">{{ $blog['title'] }}</a>
-                ({{ $blog['category'] }}, {{ $blog['published_at'] }}):
-                {{ $blog['excerpt'] }}
-            </li>
-        @empty
-            <li>No articles yet.</li>
-        @endforelse
-    </ul>
+@extends('layout.default')
 
-    <p><a href="{{ route('home') }}">Back to home</a></p>
-</body>
-</html>
+@section('title', 'Blog | ' . config('site.name'))
+
+@section('content')
+    <h1 class="mb-4">Blog</h1>
+
+    <div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-4">
+        @forelse ($blogs as $blog)
+            <div class="col">
+                <x-blog-card :blog="$blog" />
+            </div>
+        @empty
+            <div class="col">
+                <p class="text-body-secondary mb-0">No articles yet.</p>
+            </div>
+        @endforelse
+    </div>
+@endsection
