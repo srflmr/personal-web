@@ -1,41 +1,33 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>{{ $profile['name'] }}</title>
-</head>
-<body>
-    <nav>
-        <ul>
-            @foreach (config('site.navigation') as $link)
-                <li><a href="{{ route($link['route']) }}">{{ $link['label'] }}</a></li>
+@extends('layout.default')
+
+@section('content')
+    <section class="mb-5">
+        <h1>{{ $profile['name'] }}</h1>
+        <p class="lead mb-2">{{ $profile['role'] }}</p>
+        <p class="text-body-secondary mb-0">{{ $profile['tagline'] }}</p>
+    </section>
+
+    <section class="mb-5">
+        <x-section-heading title="Featured projects" />
+
+        <div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-4">
+            @foreach ($featuredProjects as $project)
+                <div class="col">
+                    <x-portfolio-card :project="$project" />
+                </div>
             @endforeach
-        </ul>
-    </nav>
+        </div>
+    </section>
 
-    <h1>{{ $profile['name'] }}</h1>
-    <p>{{ $profile['role'] }}</p>
-    <p>{{ $profile['tagline'] }}</p>
+    <section>
+        <x-section-heading title="Latest articles" />
 
-    <h2>Featured projects</h2>
-    <ul>
-        @foreach ($featuredProjects as $project)
-            <li>
-                <a href="{{ route('portfolio.show', $project['slug']) }}">{{ $project['title'] }}</a>:
-                {{ $project['description'] }}
-            </li>
-        @endforeach
-    </ul>
-
-    <h2>Latest articles</h2>
-    <ul>
-        @foreach ($latestBlogs as $blog)
-            <li>
-                <a href="{{ route('blog.show', $blog['slug']) }}">{{ $blog['title'] }}</a>
-                ({{ $blog['category'] }}, {{ $blog['published_at'] }})
-            </li>
-        @endforeach
-    </ul>
-</body>
-</html>
+        <div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-4">
+            @foreach ($latestBlogs as $blog)
+                <div class="col">
+                    <x-blog-card :blog="$blog" />
+                </div>
+            @endforeach
+        </div>
+    </section>
+@endsection
