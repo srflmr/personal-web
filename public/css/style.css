@@ -1,0 +1,648 @@
+/* Geist Sans and Geist Mono (OFL-1.1, see fonts/OFL.txt), latin subset from @fontsource 5.3.0. */
+@font-face {
+    font-family: "Geist Sans";
+    font-style: normal;
+    font-weight: 400;
+    font-display: swap;
+    src: url("../fonts/geist-sans-latin-400-normal.woff2") format("woff2");
+}
+
+@font-face {
+    font-family: "Geist Sans";
+    font-style: normal;
+    font-weight: 500;
+    font-display: swap;
+    src: url("../fonts/geist-sans-latin-500-normal.woff2") format("woff2");
+}
+
+@font-face {
+    font-family: "Geist Sans";
+    font-style: normal;
+    font-weight: 600;
+    font-display: swap;
+    src: url("../fonts/geist-sans-latin-600-normal.woff2") format("woff2");
+}
+
+@font-face {
+    font-family: "Geist Sans";
+    font-style: normal;
+    font-weight: 700;
+    font-display: swap;
+    src: url("../fonts/geist-sans-latin-700-normal.woff2") format("woff2");
+}
+
+@font-face {
+    font-family: "Geist Mono";
+    font-style: normal;
+    font-weight: 400;
+    font-display: swap;
+    src: url("../fonts/geist-mono-latin-400-normal.woff2") format("woff2");
+}
+
+@font-face {
+    font-family: "Geist Mono";
+    font-style: normal;
+    font-weight: 500;
+    font-display: swap;
+    src: url("../fonts/geist-mono-latin-500-normal.woff2") format("woff2");
+}
+
+/* Design tokens (light). Contrast ratios are listed in the design notes. */
+:root,
+[data-bs-theme="light"] {
+    --site-bg: #eef2f6;
+    --site-surface: #ffffff;
+    --site-ink: #0f172a;
+    --site-muted: #475569;
+    --site-line: #e2e8f0;
+    --site-dark: #0b1220;
+    --site-dark-ink: #f8fafc;
+    --site-dark-muted: #cbd5e1;
+    --site-dark-subtle: #94a3b8;
+    --site-dark-line: rgba(148, 163, 184, 0.22);
+    --site-cyan: #22d3ee;
+    --site-cyan-text: #67e8f9;
+    --site-accent-bg: #cffafe;
+    --site-accent-ink: #083344;
+    --site-accent-muted: #155e75;
+    --site-code-bg: #ecfeff;
+    --site-on-primary: #ffffff;
+    --site-radius: clamp(1.25rem, 0.9rem + 1.2vw, 1.75rem);
+    --site-gap: 1.25rem;
+
+    --bs-body-font-family: "Geist Sans", system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+    --bs-font-monospace: "Geist Mono", ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+    --bs-body-bg: var(--site-bg);
+    --bs-body-color: var(--site-ink);
+    --bs-emphasis-color: var(--site-ink);
+    --bs-secondary-color: var(--site-muted);
+    --bs-border-color: var(--site-line);
+    --bs-primary: #0e7490;
+    --bs-primary-rgb: 14, 116, 144;
+    --bs-link-color: #0e7490;
+    --bs-link-color-rgb: 14, 116, 144;
+    --bs-link-hover-color: #155e75;
+    /* Bootstrap 5.3 paints links from the -rgb variables, so the hover needs one too. */
+    --bs-link-hover-color-rgb: 21, 94, 117;
+    --bs-code-color: #0e7490;
+}
+
+/* Design tokens (dark). Must follow the light block: both selectors have the same specificity. */
+[data-bs-theme="dark"] {
+    --site-bg: #070b14;
+    --site-surface: #111a2e;
+    --site-ink: #f1f5f9;
+    --site-muted: #94a3b8;
+    --site-line: rgba(148, 163, 184, 0.22);
+    --site-dark: #020617;
+    --site-accent-bg: #0c3a4a;
+    --site-accent-ink: #cffafe;
+    --site-accent-muted: #67e8f9;
+    --site-code-bg: #0c3a4a;
+    --site-on-primary: #04222b;
+
+    /* The light block overrides Bootstrap's dark values, so every -rgb variant is set here as well. */
+    --bs-body-bg-rgb: 7, 11, 20;
+    --bs-body-color-rgb: 241, 245, 249;
+    --bs-emphasis-color-rgb: 241, 245, 249;
+    --bs-primary: #22d3ee;
+    --bs-primary-rgb: 34, 211, 238;
+    --bs-link-color: #22d3ee;
+    --bs-link-color-rgb: 34, 211, 238;
+    --bs-link-hover-color: #67e8f9;
+    --bs-link-hover-color-rgb: 103, 232, 249;
+    --bs-code-color: #67e8f9;
+}
+
+/* Typography: one family for text, mono only for labels, dates, tags, and code. */
+h1,
+h2,
+h3,
+.display-name,
+.page-title {
+    text-wrap: balance;
+    letter-spacing: -0.02em;
+}
+
+.display-name {
+    display: block;
+    font-size: clamp(2.75rem, 1.9rem + 3.6vw, 4.25rem);
+    font-weight: 700;
+    line-height: 1;
+    letter-spacing: -0.035em;
+}
+
+.page-title {
+    font-size: clamp(2.25rem, 1.7rem + 2.4vw, 3.25rem);
+    font-weight: 700;
+    line-height: 1.08;
+}
+
+.lead-text {
+    font-size: clamp(1.0625rem, 1rem + 0.35vw, 1.1875rem);
+    line-height: 1.65;
+}
+
+.eyebrow,
+.tile-label {
+    font-family: var(--bs-font-monospace);
+    font-size: 0.8125rem;
+    font-weight: 500;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+}
+
+.meta {
+    font-family: var(--bs-font-monospace);
+    font-size: 0.8125rem;
+    color: var(--site-muted);
+}
+
+.index-number {
+    font-family: var(--bs-font-monospace);
+    font-size: 0.75rem;
+    font-weight: 400;
+    color: var(--bs-primary);
+}
+
+/* Tiles: the base surface of every page. */
+.stack {
+    display: flex;
+    flex-direction: column;
+    gap: var(--site-gap);
+}
+
+.g-tiles {
+    --bs-gutter-x: var(--site-gap);
+    --bs-gutter-y: var(--site-gap);
+}
+
+.tile {
+    position: relative;
+    padding: clamp(1.5rem, 0.9rem + 2.4vw, 3.25rem);
+    border-radius: var(--site-radius);
+    background-color: var(--site-surface);
+}
+
+.tile-sm {
+    padding: clamp(1.5rem, 1.1rem + 1.4vw, 2.25rem);
+}
+
+.tile-dark {
+    --bs-body-color: var(--site-dark-muted);
+    --bs-secondary-color: var(--site-dark-subtle);
+    --bs-emphasis-color: var(--site-dark-ink);
+    --bs-border-color: var(--site-dark-line);
+    --bs-body-color-rgb: 203, 213, 225;
+    --bs-emphasis-color-rgb: 248, 250, 252;
+    --bs-link-color-rgb: 103, 232, 249;
+    --bs-link-hover-color-rgb: 165, 243, 252;
+    color: var(--site-dark-muted);
+    background-color: var(--site-dark);
+}
+
+.tile-dark :is(h1, h2, h3, .display-name, .page-title) {
+    color: var(--site-dark-ink);
+}
+
+.tile-dark :is(.eyebrow, .tile-label, .index-number) {
+    color: var(--site-cyan-text);
+}
+
+.tile-dark .meta {
+    color: var(--site-dark-subtle);
+}
+
+.tile-accent {
+    --bs-body-color-rgb: 8, 51, 68;
+    --bs-secondary-color: var(--site-accent-muted);
+    color: var(--site-accent-ink);
+    background-color: var(--site-accent-bg);
+}
+
+.tile-accent :is(h2, h3, .tile-label, .meta, a:not(.btn)) {
+    color: var(--site-accent-ink);
+}
+
+.tile-accent .meta,
+.tile-accent .tile-label {
+    color: var(--site-accent-muted);
+}
+
+.tile-primary {
+    color: #ecfeff;
+    background-color: var(--bs-primary);
+}
+
+.tile-primary :is(h2, h3, a:not(.btn)) {
+    color: #ffffff;
+}
+
+.tile-label {
+    margin-bottom: 0;
+    color: var(--site-muted);
+}
+
+.tile-image {
+    display: block;
+    width: 100%;
+    height: auto;
+    aspect-ratio: 16 / 9;
+    object-fit: cover;
+    border-radius: calc(var(--site-radius) - 0.5rem);
+}
+
+.tile-thumb {
+    flex: none;
+    width: 4rem;
+    height: 4rem;
+    object-fit: cover;
+    border-radius: 1rem;
+}
+
+.tile-divider {
+    margin: 0;
+    border-color: var(--bs-border-color);
+    opacity: 1;
+}
+
+/* Text links inside tiles read as headings, not as underlined body links. */
+.tile-link {
+    color: inherit;
+    text-decoration: none;
+}
+
+.tile-link:hover {
+    color: var(--bs-link-hover-color);
+}
+
+.tile-dark .tile-link:hover {
+    color: var(--site-cyan-text);
+}
+
+/* Hairline grid: cells share 1px lines drawn by the container background. */
+.hairline-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(min(100%, 18rem), 1fr));
+    gap: 1px;
+    overflow: hidden;
+    border: 1px solid var(--bs-border-color);
+    border-radius: calc(var(--site-radius) - 0.5rem);
+    background-color: var(--bs-border-color);
+}
+
+.hairline-grid > * {
+    padding: clamp(1.25rem, 1rem + 1vw, 2rem);
+    background-color: var(--site-dark);
+}
+
+/* Pills: tags, chips, and buttons share one shape. */
+.chip {
+    display: inline-block;
+    padding: 0.3125rem 0.6875rem;
+    border: 1px solid var(--bs-border-color);
+    border-radius: 999px;
+    font-size: 0.8125rem;
+    line-height: 1.4;
+}
+
+.tile-dark .chip {
+    border-color: rgba(148, 163, 184, 0.3);
+}
+
+.tile-accent .chip {
+    border-color: transparent;
+    background-color: var(--site-surface);
+}
+
+.btn {
+    --bs-btn-padding-x: 1.375rem;
+    --bs-btn-font-weight: 600;
+    --bs-btn-border-radius: 999px;
+}
+
+/* Two actions fit side by side in a third-width tile. */
+.tile .btn {
+    --bs-btn-padding-x: 1.125rem;
+}
+
+.btn-dark {
+    --bs-btn-bg: var(--site-dark);
+    --bs-btn-border-color: var(--site-dark);
+    --bs-btn-hover-bg: #1e293b;
+    --bs-btn-hover-border-color: #1e293b;
+    --bs-btn-active-bg: #1e293b;
+    --bs-btn-active-border-color: #1e293b;
+}
+
+.btn-accent {
+    --bs-btn-color: #04222b;
+    --bs-btn-bg: var(--site-cyan);
+    --bs-btn-border-color: var(--site-cyan);
+    --bs-btn-hover-color: #04222b;
+    --bs-btn-hover-bg: #67e8f9;
+    --bs-btn-hover-border-color: #67e8f9;
+    --bs-btn-active-color: #04222b;
+    --bs-btn-active-bg: #67e8f9;
+    --bs-btn-active-border-color: #67e8f9;
+}
+
+.btn-outline-light {
+    --bs-btn-color: var(--site-dark-ink);
+    --bs-btn-border-color: rgba(203, 213, 225, 0.4);
+    --bs-btn-font-weight: 500;
+}
+
+.btn-outline-dark {
+    --bs-btn-color: var(--site-ink);
+    --bs-btn-border-color: #cbd5e1;
+    --bs-btn-hover-bg: var(--site-dark);
+    --bs-btn-hover-border-color: var(--site-dark);
+    --bs-btn-font-weight: 500;
+}
+
+/* Navigation: logo on the left, pill group on the right from lg up. */
+.site-nav {
+    padding-top: 1rem;
+    padding-bottom: 1rem;
+    background-color: var(--site-bg);
+}
+
+.site-logo {
+    display: block;
+    width: 2.75rem;
+    height: 2.75rem;
+    border-radius: 0.6875rem;
+}
+
+.site-nav .navbar-collapse {
+    margin-top: 0.75rem;
+    padding: 0.5rem;
+    border-radius: 1.25rem;
+    background-color: var(--site-surface);
+}
+
+.site-nav .nav-link {
+    padding: 0.625rem 1.125rem;
+    border-radius: 999px;
+    color: #334155;
+}
+
+.site-nav .nav-link.active {
+    color: #ffffff;
+    background-color: var(--site-dark);
+}
+
+@media (min-width: 992px) {
+    .site-nav .navbar-collapse {
+        flex-grow: 0;
+        margin-top: 0;
+        margin-left: auto;
+        padding: 0.25rem;
+        border-radius: 999px;
+    }
+
+    .site-nav .navbar-nav .nav-link {
+        padding-right: 1.125rem;
+        padding-left: 1.125rem;
+    }
+}
+
+.site-footer {
+    font-size: 0.875rem;
+    color: var(--site-muted);
+}
+
+/* One focus ring everywhere; the listed components would otherwise keep Bootstrap's blue glow. */
+:focus-visible,
+.btn:focus-visible,
+.nav-link:focus-visible,
+.navbar-toggler:focus-visible {
+    outline: 2px solid var(--bs-primary);
+    outline-offset: 2px;
+    box-shadow: none;
+}
+
+.tile-dark :focus-visible,
+.tile-primary :focus-visible {
+    outline-color: var(--site-cyan);
+}
+
+/* Above the sticky navbar (z-index 1020) so the focused link is not hidden. */
+.skip-link {
+    z-index: 1030;
+}
+
+/* Touch targets of at least 44 x 44 px. */
+.btn,
+.navbar-nav .nav-link {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 2.75rem;
+}
+
+.navbar-nav .nav-link {
+    justify-content: flex-start;
+}
+
+.navbar-toggler {
+    min-width: 2.75rem;
+    min-height: 2.75rem;
+}
+
+.navbar-toggler {
+    border: 0;
+    border-radius: 999px;
+    background-color: var(--site-surface);
+}
+
+/* Bootstrap draws a ring on every focus, including mouse clicks; keep only :focus-visible. */
+.navbar-toggler:focus {
+    box-shadow: none;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+    .card-lift {
+        transition: transform 0.15s ease-out;
+    }
+
+    .card-lift:hover {
+        transform: translateY(-2px);
+    }
+}
+
+/* Round grayscale portrait on About. */
+.profile-photo {
+    width: 11rem;
+    height: 11rem;
+    object-fit: cover;
+    object-position: center 12%;
+    border-radius: 50%;
+    filter: grayscale(100%);
+}
+
+/* Rendered Markdown has no classes, so its elements are styled from the wrapper. */
+.article-body {
+    max-width: 68ch;
+    font-size: 1.0625rem;
+    line-height: 1.8;
+}
+
+@media (min-width: 768px) {
+    .article-body {
+        font-size: 1.125rem;
+    }
+}
+
+.article-body h2 {
+    margin-top: 2.5rem;
+    margin-bottom: 1rem;
+    font-size: clamp(1.375rem, 1.2rem + 0.8vw, 1.75rem);
+    font-weight: 700;
+}
+
+.article-body h3 {
+    margin-top: 2rem;
+    font-size: 1.25rem;
+    font-weight: 600;
+}
+
+.article-body :not(pre) > code {
+    padding: 0.125rem 0.375rem;
+    border-radius: 0.375rem;
+    background-color: var(--site-code-bg);
+    font-size: 0.85em;
+    overflow-wrap: anywhere;
+}
+
+/* Code block frame: a header bar with the language, then the code. */
+.article-body pre {
+    margin: 1.5rem 0 2rem;
+    overflow: hidden;
+    border-radius: 1.25rem;
+    background-color: #111a2e;
+}
+
+.article-body pre code {
+    display: block;
+    padding: 1.25rem;
+    overflow-x: auto;
+    color: #e2e8f0;
+    font-size: 0.875rem;
+    line-height: 1.7;
+}
+
+.article-body pre code[class^="language-"]::before {
+    display: block;
+    margin: -1.25rem -1.25rem 1.25rem;
+    padding: 0.625rem 1.25rem;
+    background-color: var(--site-dark);
+    color: var(--site-dark-muted);
+    font-size: 0.75rem;
+    letter-spacing: 0.04em;
+}
+
+.article-body pre code.language-yaml::before {
+    content: "yaml";
+}
+
+.article-body pre code.language-python::before {
+    content: "python";
+}
+
+.article-body pre code.language-bash::before {
+    content: "bash";
+}
+
+.article-body pre code.language-json::before {
+    content: "json";
+}
+
+.article-body pre code.language-text::before {
+    content: "text";
+}
+
+.article-body blockquote {
+    margin: 1.5rem 0;
+    padding: 1.25rem 1.5rem;
+    border-radius: 1.25rem;
+    background-color: var(--site-accent-bg);
+    color: var(--site-accent-ink);
+}
+
+.article-body blockquote > :last-child {
+    margin-bottom: 0;
+}
+
+/* Theme menu in the navbar: tile surface and primary selection instead of Bootstrap's blue. */
+.site-nav .dropdown-menu {
+    --bs-dropdown-bg: var(--site-surface);
+    --bs-dropdown-border-color: var(--bs-border-color);
+    --bs-dropdown-border-radius: 1rem;
+    --bs-dropdown-link-color: var(--site-ink);
+    --bs-dropdown-link-hover-color: var(--site-ink);
+    --bs-dropdown-link-hover-bg: var(--site-bg);
+    --bs-dropdown-link-active-color: var(--site-on-primary);
+    --bs-dropdown-link-active-bg: var(--bs-primary);
+    padding: 0.375rem;
+}
+
+.site-nav .dropdown-item {
+    display: flex;
+    align-items: center;
+    min-height: 2.75rem;
+    border-radius: 0.75rem;
+}
+
+/* Dark theme: rules whose light values are not tokens. */
+[data-bs-theme="dark"] .site-nav .nav-link:not(.active) {
+    color: var(--site-muted);
+}
+
+[data-bs-theme="dark"] .site-nav .nav-link:not(.active):is(:hover, .show) {
+    color: var(--site-ink);
+}
+
+/* The logo keeps its navy square, so it needs an edge on the dark page. */
+[data-bs-theme="dark"] .site-logo {
+    box-shadow: 0 0 0 1px rgba(148, 163, 184, 0.35);
+}
+
+/* Dark tiles sit close to the page color, so a hairline keeps their edges visible. */
+[data-bs-theme="dark"] .tile-dark,
+[data-bs-theme="dark"] .article-body pre {
+    border: 1px solid var(--site-dark-line);
+}
+
+[data-bs-theme="dark"] .tile-accent {
+    --bs-body-color-rgb: 207, 250, 254;
+}
+
+[data-bs-theme="dark"] .tile-primary,
+[data-bs-theme="dark"] .tile-primary :is(h2, h3, a:not(.btn)) {
+    color: var(--site-on-primary);
+}
+
+/* A cyan outline would disappear on the cyan tile. */
+[data-bs-theme="dark"] .tile-primary :focus-visible {
+    outline-color: var(--site-on-primary);
+}
+
+/* Inverted, so dark buttons stay distinct from the dark surface. */
+[data-bs-theme="dark"] .btn-dark {
+    --bs-btn-color: #0b1220;
+    --bs-btn-bg: #f1f5f9;
+    --bs-btn-border-color: #f1f5f9;
+    --bs-btn-hover-color: #0b1220;
+    --bs-btn-hover-bg: #cbd5e1;
+    --bs-btn-hover-border-color: #cbd5e1;
+    --bs-btn-active-color: #0b1220;
+    --bs-btn-active-bg: #cbd5e1;
+    --bs-btn-active-border-color: #cbd5e1;
+}
+
+[data-bs-theme="dark"] .btn-outline-dark {
+    --bs-btn-border-color: var(--site-dark-line);
+    --bs-btn-hover-color: var(--site-dark-ink);
+}

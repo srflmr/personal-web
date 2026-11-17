@@ -1,0 +1,26 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 360" width="640" height="360">
+  <rect width="640" height="360" fill="#0f172a"/>
+  <g stroke="#1e293b" stroke-width="1">
+    <path d="M0 90h640M0 180h640M0 270h640M160 0v360M320 0v360M480 0v360"/>
+  </g>
+  <!-- A graph of events with one path picked out -->
+  <g fill="none" stroke="#334155" stroke-width="2">
+    <path d="M110 250L210 140L320 210L430 110L540 190M210 140L300 70M320 210L400 290L540 190M110 250L230 300L320 210"/>
+  </g>
+  <g fill="none" stroke="#06b6d4" stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M110 250L210 140L320 210L430 110"/>
+  </g>
+  <g fill="#1e293b" stroke="#64748b" stroke-width="2">
+    <circle cx="300" cy="70" r="10"/>
+    <circle cx="400" cy="290" r="10"/>
+    <circle cx="540" cy="190" r="10"/>
+    <circle cx="230" cy="300" r="10"/>
+  </g>
+  <g fill="#0e7490" stroke="#22d3ee" stroke-width="2">
+    <circle cx="110" cy="250" r="12"/>
+    <circle cx="210" cy="140" r="12"/>
+    <circle cx="320" cy="210" r="12"/>
+  </g>
+  <circle cx="430" cy="110" r="26" fill="none" stroke="#06b6d4" stroke-width="2"/>
+  <circle cx="430" cy="110" r="14" fill="#22d3ee"/>
+</svg>

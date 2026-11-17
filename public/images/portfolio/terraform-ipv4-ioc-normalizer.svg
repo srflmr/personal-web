@@ -1,0 +1,43 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 360" width="640" height="360">
+  <rect width="640" height="360" fill="#0f172a"/>
+  <g stroke="#1e293b" stroke-width="1">
+    <path d="M0 90h640M0 180h640M0 270h640M160 0v360M320 0v360M480 0v360"/>
+  </g>
+  <!-- Scattered addresses on the left are aligned into uniform blocks on the right -->
+  <g fill="#64748b">
+    <circle cx="84" cy="96" r="9"/>
+    <circle cx="150" cy="130" r="9"/>
+    <circle cx="104" cy="178" r="9"/>
+    <circle cx="186" cy="204" r="9"/>
+    <circle cx="74" cy="244" r="9"/>
+    <circle cx="140" cy="270" r="9"/>
+    <circle cx="204" cy="100" r="9"/>
+  </g>
+  <g fill="#0e7490">
+    <circle cx="150" cy="130" r="4"/>
+    <circle cx="186" cy="204" r="4"/>
+  </g>
+  <g fill="none" stroke="#06b6d4" stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M250 180h64M296 162l18 18-18 18"/>
+  </g>
+  <g fill="#1e293b" stroke="#22d3ee" stroke-width="2">
+    <rect x="356" y="84" width="64" height="48" rx="8"/>
+    <rect x="436" y="84" width="64" height="48" rx="8"/>
+    <rect x="516" y="84" width="64" height="48" rx="8"/>
+    <rect x="356" y="156" width="64" height="48" rx="8"/>
+    <rect x="436" y="156" width="64" height="48" rx="8"/>
+    <rect x="516" y="156" width="64" height="48" rx="8"/>
+    <rect x="356" y="228" width="64" height="48" rx="8"/>
+    <rect x="436" y="228" width="64" height="48" rx="8"/>
+  </g>
+  <g fill="#0e7490">
+    <rect x="368" y="102" width="40" height="12" rx="6"/>
+    <rect x="448" y="102" width="40" height="12" rx="6"/>
+    <rect x="528" y="102" width="40" height="12" rx="6"/>
+    <rect x="368" y="174" width="40" height="12" rx="6"/>
+    <rect x="448" y="174" width="40" height="12" rx="6"/>
+    <rect x="528" y="174" width="40" height="12" rx="6"/>
+    <rect x="368" y="246" width="40" height="12" rx="6"/>
+    <rect x="448" y="246" width="40" height="12" rx="6"/>
+  </g>
+</svg>
