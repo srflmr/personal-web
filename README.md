@@ -122,7 +122,7 @@ flowchart LR
 ```
 
 1. A route matches the URL and calls a controller method.
-2. The controller loads the content array with `include base_path('database/<file>.php')`, finds the item by slug with a strict comparison, and calls `abort_if($item === null, 404)` when it is missing.
+2. The controller loads the content array with `include base_path('database/<file>.php')`, finds the item by slug with a strict comparison, and calls `abort_if($project === null, 404)` or `abort_if($blog === null, 404)` when it is missing.
 3. For articles, the controller renders the Markdown body with `Str::markdown()` and computes the reading time.
 4. The view only displays the data it receives. It extends the shared layout and uses components for repeated parts.
 5. The `SecurityHeaders` middleware adds the security headers to every response, including 404 pages.
