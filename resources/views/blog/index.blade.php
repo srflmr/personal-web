@@ -3,17 +3,24 @@
 @section('title', 'Blog | ' . config('site.name'))
 
 @section('content')
-    <h1 class="mb-4">Blog</h1>
+    <section class="tile tile-dark d-flex flex-wrap align-items-end justify-content-between gap-3">
+        <div>
+            <p class="eyebrow mb-2">Blog</p>
+            <h1 class="page-title mb-0">Writing</h1>
+        </div>
+        <p class="meta mb-0">{{ count($blogs) }} articles &middot; newest first</p>
+    </section>
 
-    <x-section-heading title="Articles" :subtitle="count($blogs) . ' articles, newest first'" />
+    <h2 class="visually-hidden">All articles</h2>
 
-    <div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-4">
+    <div class="row g-tiles">
         @forelse ($blogs as $blog)
-            <div class="col">
-                <x-blog-card :blog="$blog" />
+            {{-- The newest article spans the full width; the rest share two columns. --}}
+            <div @class(['col-12', 'col-md-6' => ! $loop->first])>
+                <x-blog-card :blog="$blog" :featured="$loop->first" />
             </div>
         @empty
-            <div class="col">
+            <div class="col-12">
                 <p class="text-body-secondary mb-0">No articles yet.</p>
             </div>
         @endforelse

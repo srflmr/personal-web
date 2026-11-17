@@ -1,34 +1,38 @@
-@props(['project'])
+@props(['project', 'featured' => false])
 
-<article class="card card-lift h-100 rounded-4 shadow-sm overflow-hidden">
+<article @class(['tile tile-sm h-100 d-flex flex-column gap-3', 'tile-accent' => $featured])>
     {{-- Decorative illustration, so the alt text is empty. --}}
-    <img class="card-img-top card-image" src="{{ asset($project['image']) }}" alt="" width="640" height="360" loading="lazy">
+    <img class="tile-image" src="{{ asset($project['image']) }}" alt="" width="640" height="360" loading="lazy">
 
-    <div class="card-body d-flex flex-column">
+    <p class="meta d-flex flex-wrap justify-content-between gap-2 mb-0">
         @isset($project['context'])
-            <p class="font-monospace small text-body-secondary mb-2">{{ $project['context'] }}</p>
+            <span>{{ $project['context'] }}</span>
         @endisset
+        <time datetime="{{ $project['published_at'] }}">{{ date('j M Y', strtotime($project['published_at'])) }}</time>
+    </p>
 
-        <h3 class="card-title h5">
-            <a class="link-body-emphasis text-decoration-none" href="{{ route('portfolio.show', $project['slug']) }}">{{ $project['title'] }}</a>
-        </h3>
+    <h3 class="h4 fw-semibold mb-0">
+        <a class="tile-link" href="{{ route('portfolio.show', $project['slug']) }}">{{ $project['title'] }}</a>
+    </h3>
 
-        <p class="card-text">{{ $project['description'] }}</p>
+    <p class="mb-0">{{ $project['description'] }}</p>
 
-        <ul class="list-unstyled d-flex flex-wrap gap-2 mb-4">
-            @foreach ($project['technologies'] as $technology)
-                <li class="badge bg-body-tertiary text-body border font-monospace fw-normal">{{ $technology }}</li>
-            @endforeach
-        </ul>
+    <p class="meta mb-0">
+        {{ implode(' · ', array_slice($project['technologies'], 0, 4)) }}
+        @if (count($project['technologies']) > 4)
+            &middot; +{{ count($project['technologies']) - 4 }}
+        @endif
+    </p>
 
-        <div class="mt-auto">
-            @if ($project['demo_url'])
-                <a class="btn btn-primary btn-sm" href="{{ $project['demo_url'] }}" target="_blank" rel="noopener noreferrer">Live demo</a>
-            @elseif ($project['repository_url'])
-                <a class="btn btn-outline-primary btn-sm" href="{{ $project['repository_url'] }}" target="_blank" rel="noopener noreferrer">Source code</a>
-            @else
-                <span class="badge bg-body-tertiary text-body border font-monospace fw-normal">Private project</span>
-            @endif
-        </div>
+    <div class="d-flex flex-wrap gap-2 mt-auto pt-2">
+        <a class="btn btn-dark" href="{{ route('portfolio.show', $project['slug']) }}">View details<span class="visually-hidden">: {{ $project['title'] }}</span></a>
+
+        @if ($project['demo_url'])
+            <a class="btn btn-outline-dark" href="{{ $project['demo_url'] }}" target="_blank" rel="noopener noreferrer">Live demo</a>
+        @elseif ($project['repository_url'])
+            <a class="btn btn-outline-dark" href="{{ $project['repository_url'] }}" target="_blank" rel="noopener noreferrer">Source code</a>
+        @else
+            <span class="chip align-self-center">Private project</span>
+        @endif
     </div>
 </article>
