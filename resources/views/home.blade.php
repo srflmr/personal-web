@@ -4,14 +4,18 @@
     <div class="row g-tiles">
         <section class="col-lg-8">
             <div class="tile tile-dark h-100 d-flex flex-column justify-content-center gap-3">
-                <p class="eyebrow mb-0">{{ $profile['role'] }}</p>
-
                 <h1 class="mb-0">
                     <span class="d-block fs-5 fw-medium text-body mb-2">Hello, I'm</span>
                     <span class="display-name">{{ $profile['name'] }}</span>
                 </h1>
 
                 <p class="lead-text mb-0">{{ $profile['tagline'] }}</p>
+
+                <ul class="list-unstyled d-flex flex-wrap gap-2 mb-0" aria-label="Focus areas">
+                    @foreach ($focusAreas as $area)
+                        <li class="chip">{{ $area['title'] }}</li>
+                    @endforeach
+                </ul>
 
                 <div class="d-flex flex-wrap align-items-center gap-2 mt-2">
                     <a class="btn btn-accent" href="{{ route('portfolio.index') }}">View portfolio</a>
@@ -21,21 +25,15 @@
             </div>
         </section>
 
-        <section class="col-lg-4">
-            <div class="tile tile-sm h-100">
-                <x-section-heading title="Focus" />
-
-                <ul class="list-unstyled mb-0">
-                    @foreach ($focusAreas as $area)
-                        <li @class(['py-3', 'border-top' => ! $loop->first, 'pt-0' => $loop->first, 'pb-0' => $loop->last])>
-                            <h3 class="h6 fw-semibold d-flex align-items-baseline gap-3 mb-1">
-                                <span class="index-number" aria-hidden="true">{{ sprintf('%02d', $loop->iteration) }}</span>
-                                {{ $area['title'] }}
-                            </h3>
-                            <p class="small text-body-secondary mb-0">{{ $area['text'] }}</p>
-                        </li>
-                    @endforeach
-                </ul>
+        <section class="col-lg-4" aria-label="Profile">
+            <div class="tile tile-sm h-100 d-flex flex-column align-items-center justify-content-center text-center">
+                <img class="profile-photo mb-3" src="{{ asset('images/profile.jpg') }}" alt="Portrait of {{ $profile['name'] }}" width="176" height="176">
+                <p class="fs-5 fw-semibold text-body-emphasis mb-1">{{ $profile['name'] }}</p>
+                <p class="fw-medium text-primary mb-1">{{ $profile['role'] }}</p>
+                <p class="small text-body-secondary mb-0">{{ $profile['company'] }}</p>
+                @foreach ($education as $item)
+                    <p class="small text-body-secondary mb-0">{{ $item['program'] }}, {{ $item['institution'] }}</p>
+                @endforeach
             </div>
         </section>
     </div>

@@ -12,25 +12,11 @@ class HomeController extends Controller
         $projects = include base_path('database/dummyportfolios.php');
         $blogs = include base_path('database/dummyblogs.php');
 
-        $focusAreas = [
-            [
-                'title' => 'Security',
-                'text' => 'Specialized in threat detection, SIEM operations, and security monitoring.',
-            ],
-            [
-                'title' => 'Development',
-                'text' => 'Building tools and automation scripts for security operations.',
-            ],
-            [
-                'title' => 'Learning',
-                'text' => 'Continuously expanding knowledge through certifications and hands-on experience.',
-            ],
-        ];
-
         // Both files are ordered newest first, so the first three are the latest.
         return view('home', [
             'profile' => $this->profile(),
-            'focusAreas' => $focusAreas,
+            'focusAreas' => $this->focusAreas(),
+            'education' => $this->education(),
             'featuredProjects' => array_slice($projects, 0, 3),
             'latestBlogs' => array_slice($blogs, 0, 3),
         ]);
@@ -66,10 +52,6 @@ class HomeController extends Controller
             ['role' => 'Associate Security Analyst', 'organization' => 'PT Korelasi Persada Indonesia', 'period' => 'April 2022 - October 2024'],
         ];
 
-        $education = [
-            ['institution' => 'Universitas Ciputra', 'program' => 'Informatics', 'level' => 'Undergraduate program', 'period' => '2025 to present'],
-        ];
-
         $certifications = [
             ['name' => 'CertiProf Lifelong Learning', 'image' => 'images/badges/badge-1.png'],
             ['name' => 'CertiProf Cybersecurity Awareness Professional Certification (CAPC)', 'image' => 'images/badges/badge-2.png'],
@@ -95,7 +77,8 @@ class HomeController extends Controller
             'skills' => $skills,
             'skillCount' => $skillCount,
             'experience' => $experience,
-            'education' => $education,
+            'focusAreas' => $this->focusAreas(),
+            'education' => $this->education(),
             'certifications' => $certifications,
             'certificationLinks' => $certificationLinks,
         ]);
@@ -112,5 +95,40 @@ class HomeController extends Controller
     private function profile(): array
     {
         return Arr::only(config('site'), ['name', 'role', 'company', 'tagline']);
+    }
+
+    /**
+     * Shared by Home (chips in the hero) and About (the Focus card).
+     *
+     * @return list<array{title: string, text: string}>
+     */
+    private function focusAreas(): array
+    {
+        return [
+            [
+                'title' => 'Security',
+                'text' => 'Specialized in threat detection, SIEM operations, and security monitoring.',
+            ],
+            [
+                'title' => 'Development',
+                'text' => 'Building tools and automation scripts for security operations.',
+            ],
+            [
+                'title' => 'Learning',
+                'text' => 'Continuously expanding knowledge through certifications and hands-on experience.',
+            ],
+        ];
+    }
+
+    /**
+     * Shared by the profile card on Home and the Education card on About.
+     *
+     * @return list<array{institution: string, program: string, level: string, period: string}>
+     */
+    private function education(): array
+    {
+        return [
+            ['institution' => 'Universitas Ciputra', 'program' => 'Informatics', 'level' => 'Undergraduate program', 'period' => '2025 to present'],
+        ];
     }
 }
