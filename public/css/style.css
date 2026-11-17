@@ -280,15 +280,28 @@ h3,
     color: var(--site-cyan-text);
 }
 
-/* Hairline grid: cells share 1px lines drawn by the container background. */
+/* Hairline grid: cells share 1px lines drawn by the container background.
+   Fixed column counts: auto-fit gave 4 columns from 1400px, leaving empty cells in the last row. */
 .hairline-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(min(100%, 18rem), 1fr));
+    grid-template-columns: 1fr;
     gap: 1px;
     overflow: hidden;
     border: 1px solid var(--bs-border-color);
     border-radius: calc(var(--site-radius) - 0.5rem);
     background-color: var(--bs-border-color);
+}
+
+@media (min-width: 768px) {
+    .hairline-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+}
+
+@media (min-width: 992px) {
+    .hairline-grid {
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+    }
 }
 
 .hairline-grid > * {
