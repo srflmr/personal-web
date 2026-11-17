@@ -15,7 +15,7 @@
         <div class="col-lg-5">
             <div class="tile tile-primary card-lift h-100 d-flex flex-column gap-2">
                 <i class="bi bi-envelope fs-3" aria-hidden="true"></i>
-                <h2 class="meta text-white mt-auto mb-0 pt-4">Email</h2>
+                <h2 class="meta mt-auto mb-0 pt-4">Email</h2>
                 <a class="stretched-link fs-4 fw-semibold text-break" href="mailto:{{ config('site.email') }}">{{ config('site.email') }}</a>
             </div>
         </div>
