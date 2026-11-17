@@ -4,6 +4,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>@yield('title', 'Isrofil Amar')</title>
+    <link rel="icon" href="{{ asset('favicon.svg') }}" type="image/svg+xml">
 
     {{-- Pinned versions with Subresource Integrity; update the hash together with the version. --}}
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.9/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-yEPZ7jP9S0QKiUQ0m3jjsO4ProIW7wvR9gXkI7JOGa2XVsw53Yke2bsdkBbjmmiX" crossorigin="anonymous">
@@ -15,11 +16,11 @@
 
     <x-navbar :links="config('site.navigation')" />
 
-    <main id="content" class="container py-4 py-lg-5">
+    <main id="content" class="container stack pt-2 pb-5">
         @yield('content')
     </main>
 
-    <x-footer :social="config('site.social')" />
+    <x-footer />
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.9/dist/js/bootstrap.bundle.min.js" integrity="sha384-WyOxWvTyr1QaMPfiPJSv76iReVthorl5uWlFtZPyK0IEB0hGzo9y5Bp9mYanr8Bu" crossorigin="anonymous"></script>
 </body>

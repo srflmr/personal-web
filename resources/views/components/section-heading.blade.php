@@ -1,8 +1,8 @@
 @props(['title', 'subtitle' => null])
 
-<div class="mb-4">
-    <h2 class="h3 mb-1">{{ $title }}</h2>
+<div class="d-flex flex-wrap align-items-baseline justify-content-between gap-2 mb-3">
+    <h2 class="tile-label">{{ $title }}</h2>
     @if ($subtitle)
-        <p class="text-body-secondary mb-0">{{ $subtitle }}</p>
+        <p class="meta mb-0">{{ $subtitle }}</p>
     @endif
 </div>
