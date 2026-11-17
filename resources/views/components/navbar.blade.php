@@ -23,6 +23,30 @@
                         >{{ $link['label'] }}</a>
                     </li>
                 @endforeach
+                {{-- theme.js updates the icon, the label, and the selected item. --}}
+                <li class="nav-item dropdown">
+                    <button class="nav-link dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Theme" data-theme-toggle>
+                        <i class="bi bi-circle-half" aria-hidden="true"></i>
+                        <span class="d-lg-none ms-2">Theme</span>
+                    </button>
+                    <ul class="dropdown-menu dropdown-menu-end">
+                        <li>
+                            <button class="dropdown-item" type="button" data-theme-value="light" aria-pressed="false">
+                                <i class="bi bi-sun-fill me-2" aria-hidden="true"></i>Light
+                            </button>
+                        </li>
+                        <li>
+                            <button class="dropdown-item" type="button" data-theme-value="dark" aria-pressed="false">
+                                <i class="bi bi-moon-stars-fill me-2" aria-hidden="true"></i>Dark
+                            </button>
+                        </li>
+                        <li>
+                            <button class="dropdown-item" type="button" data-theme-value="auto" aria-pressed="false">
+                                <i class="bi bi-circle-half me-2" aria-hidden="true"></i>Auto
+                            </button>
+                        </li>
+                    </ul>
+                </li>
             </ul>
         </div>
     </div>

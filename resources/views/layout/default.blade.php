@@ -6,6 +6,9 @@
     <title>@yield('title', 'Isrofil Amar')</title>
     <link rel="icon" href="{{ asset('favicon.svg') }}" type="image/svg+xml">
 
+    {{-- Before the stylesheets and without defer, so the saved theme applies before the first paint. --}}
+    <script src="{{ asset('js/theme.js') }}"></script>
+
     {{-- Pinned versions with Subresource Integrity; update the hash together with the version. --}}
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.9/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-yEPZ7jP9S0QKiUQ0m3jjsO4ProIW7wvR9gXkI7JOGa2XVsw53Yke2bsdkBbjmmiX" crossorigin="anonymous">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.13.2/font/bootstrap-icons.min.css" rel="stylesheet" integrity="sha384-nWN3KqaaVcbEsCjLSV+2jMjh62Iny/+mN3srM8TZeM8N6aj7eDl5wwYggjAJ4/sJ" crossorigin="anonymous">

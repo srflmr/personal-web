@@ -66,6 +66,7 @@
     --site-accent-ink: #083344;
     --site-accent-muted: #155e75;
     --site-code-bg: #ecfeff;
+    --site-on-primary: #ffffff;
     --site-radius: clamp(1.25rem, 0.9rem + 1.2vw, 1.75rem);
     --site-gap: 1.25rem;
 
@@ -84,6 +85,33 @@
     /* Bootstrap 5.3 paints links from the -rgb variables, so the hover needs one too. */
     --bs-link-hover-color-rgb: 21, 94, 117;
     --bs-code-color: #0e7490;
+}
+
+/* Design tokens (dark). Must follow the light block: both selectors have the same specificity. */
+[data-bs-theme="dark"] {
+    --site-bg: #070b14;
+    --site-surface: #111a2e;
+    --site-ink: #f1f5f9;
+    --site-muted: #94a3b8;
+    --site-line: rgba(148, 163, 184, 0.22);
+    --site-dark: #020617;
+    --site-accent-bg: #0c3a4a;
+    --site-accent-ink: #cffafe;
+    --site-accent-muted: #67e8f9;
+    --site-code-bg: #0c3a4a;
+    --site-on-primary: #04222b;
+
+    /* The light block overrides Bootstrap's dark values, so every -rgb variant is set here as well. */
+    --bs-body-bg-rgb: 7, 11, 20;
+    --bs-body-color-rgb: 241, 245, 249;
+    --bs-emphasis-color-rgb: 241, 245, 249;
+    --bs-primary: #22d3ee;
+    --bs-primary-rgb: 34, 211, 238;
+    --bs-link-color: #22d3ee;
+    --bs-link-color-rgb: 34, 211, 238;
+    --bs-link-hover-color: #67e8f9;
+    --bs-link-hover-color-rgb: 103, 232, 249;
+    --bs-code-color: #67e8f9;
 }
 
 /* Typography: one family for text, mono only for labels, dates, tags, and code. */
@@ -545,4 +573,76 @@ h3,
 
 .article-body blockquote > :last-child {
     margin-bottom: 0;
+}
+
+/* Theme menu in the navbar: tile surface and primary selection instead of Bootstrap's blue. */
+.site-nav .dropdown-menu {
+    --bs-dropdown-bg: var(--site-surface);
+    --bs-dropdown-border-color: var(--bs-border-color);
+    --bs-dropdown-border-radius: 1rem;
+    --bs-dropdown-link-color: var(--site-ink);
+    --bs-dropdown-link-hover-color: var(--site-ink);
+    --bs-dropdown-link-hover-bg: var(--site-bg);
+    --bs-dropdown-link-active-color: var(--site-on-primary);
+    --bs-dropdown-link-active-bg: var(--bs-primary);
+    padding: 0.375rem;
+}
+
+.site-nav .dropdown-item {
+    display: flex;
+    align-items: center;
+    min-height: 2.75rem;
+    border-radius: 0.75rem;
+}
+
+/* Dark theme: rules whose light values are not tokens. */
+[data-bs-theme="dark"] .site-nav .nav-link:not(.active) {
+    color: var(--site-muted);
+}
+
+[data-bs-theme="dark"] .site-nav .nav-link:not(.active):is(:hover, .show) {
+    color: var(--site-ink);
+}
+
+/* The logo keeps its navy square, so it needs an edge on the dark page. */
+[data-bs-theme="dark"] .site-logo {
+    box-shadow: 0 0 0 1px rgba(148, 163, 184, 0.35);
+}
+
+/* Dark tiles sit close to the page color, so a hairline keeps their edges visible. */
+[data-bs-theme="dark"] .tile-dark,
+[data-bs-theme="dark"] .article-body pre {
+    border: 1px solid var(--site-dark-line);
+}
+
+[data-bs-theme="dark"] .tile-accent {
+    --bs-body-color-rgb: 207, 250, 254;
+}
+
+[data-bs-theme="dark"] .tile-primary,
+[data-bs-theme="dark"] .tile-primary :is(h2, h3, a:not(.btn)) {
+    color: var(--site-on-primary);
+}
+
+/* A cyan outline would disappear on the cyan tile. */
+[data-bs-theme="dark"] .tile-primary :focus-visible {
+    outline-color: var(--site-on-primary);
+}
+
+/* Inverted, so dark buttons stay distinct from the dark surface. */
+[data-bs-theme="dark"] .btn-dark {
+    --bs-btn-color: #0b1220;
+    --bs-btn-bg: #f1f5f9;
+    --bs-btn-border-color: #f1f5f9;
+    --bs-btn-hover-color: #0b1220;
+    --bs-btn-hover-bg: #cbd5e1;
+    --bs-btn-hover-border-color: #cbd5e1;
+    --bs-btn-active-color: #0b1220;
+    --bs-btn-active-bg: #cbd5e1;
+    --bs-btn-active-border-color: #cbd5e1;
+}
+
+[data-bs-theme="dark"] .btn-outline-dark {
+    --bs-btn-border-color: var(--site-dark-line);
+    --bs-btn-hover-color: var(--site-dark-ink);
 }
