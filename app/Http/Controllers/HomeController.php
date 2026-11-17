@@ -12,21 +12,17 @@ class HomeController extends Controller
         $projects = include base_path('database/dummyportfolios.php');
         $blogs = include base_path('database/dummyblogs.php');
 
-        // 'icon' is a Bootstrap Icons name without the "bi-" prefix.
         $focusAreas = [
             [
                 'title' => 'Security',
-                'icon' => 'shield-check',
                 'text' => 'Specialized in threat detection, SIEM operations, and security monitoring.',
             ],
             [
                 'title' => 'Development',
-                'icon' => 'code-slash',
                 'text' => 'Building tools and automation scripts for security operations.',
             ],
             [
                 'title' => 'Learning',
-                'icon' => 'mortarboard',
                 'text' => 'Continuously expanding knowledge through certifications and hands-on experience.',
             ],
         ];
@@ -43,7 +39,8 @@ class HomeController extends Controller
     public function about(): View
     {
         $narrative = [
-            'intro' => 'Every adversary leaves a shadow. My journey, from watching those shadows to holding the light that makes the unseen visible.',
+            'headline' => 'Every adversary leaves a shadow.',
+            'intro' => 'My journey, from watching those shadows to holding the light that makes the unseen visible.',
             'heading' => 'From shadows to clarity',
             'paragraphs' => [
                 'I started as an Associate Security Analyst, drawn to the quiet work of making sense of noise. Day by day, I learned how adversaries leave shadows: fragments in alerts and logs that only become meaningful when you connect them with context and evidence. That experience shaped how I think: patient, curious, and grounded in what the data can prove.',
@@ -59,6 +56,8 @@ class HomeController extends Controller
             ['category' => 'Cloud Security', 'items' => ['Google Cloud (ACE)', 'Cloud Architecture', 'IAM', 'Cloud Monitoring']],
             ['category' => 'DevOps & Infrastructure', 'items' => ['DevOps Fundamentals', 'Shell Scripting', 'CI/CD', 'Docker']],
         ];
+
+        $skillCount = array_sum(array_map('count', array_column($skills, 'items')));
 
         // Newest first.
         $experience = [
@@ -94,6 +93,7 @@ class HomeController extends Controller
             'profile' => $this->profile(),
             'narrative' => $narrative,
             'skills' => $skills,
+            'skillCount' => $skillCount,
             'experience' => $experience,
             'education' => $education,
             'certifications' => $certifications,

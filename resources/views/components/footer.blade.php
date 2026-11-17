@@ -1,17 +1,11 @@
-@props(['social'])
-
-<footer class="border-top mt-auto py-4">
-    <div class="container d-flex flex-column flex-sm-row align-items-center justify-content-between gap-3">
-        <p class="small text-body-secondary mb-0">&copy; {{ date('Y') }} {{ config('site.name') }}. All rights reserved.</p>
-
-        <ul class="list-unstyled d-flex gap-2 mb-0">
-            @foreach ($social as $link)
-                <li>
-                    <a class="touch-target d-inline-flex align-items-center justify-content-center fs-5 text-body-secondary" href="{{ $link['url'] }}" target="_blank" rel="noopener noreferrer" aria-label="{{ $link['label'] }} (opens in new tab)">
-                        <i class="bi bi-{{ $link['icon'] }}" aria-hidden="true"></i>
-                    </a>
-                </li>
-            @endforeach
-        </ul>
-    </div>
+<footer class="site-footer mt-auto pt-2 pb-5">
+    <p class="container d-flex flex-wrap align-items-center justify-content-center gap-2 mb-0 text-center">
+        <span class="font-monospace">&copy; {{ date('Y') }}</span>
+        <span aria-hidden="true">&middot;</span>
+        <span>
+            Made with
+            <i class="bi bi-heart-fill text-primary" aria-hidden="true"></i><span class="visually-hidden">love</span>
+            by <strong class="fw-semibold text-body-emphasis">{{ config('site.name') }}</strong>
+        </span>
+    </p>
 </footer>
