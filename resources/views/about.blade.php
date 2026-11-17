@@ -12,15 +12,21 @@
             </div>
         </section>
 
-        <section class="col-lg-4" aria-label="Profile">
-            <div class="tile tile-sm h-100 d-flex flex-column align-items-center justify-content-center text-center">
-                <img class="profile-photo mb-3" src="{{ asset('images/profile.jpg') }}" alt="Portrait of {{ $profile['name'] }}" width="176" height="176">
-                <p class="fs-5 fw-semibold text-body-emphasis mb-1">{{ $profile['name'] }}</p>
-                <p class="fw-medium text-primary mb-1">{{ $profile['role'] }}</p>
-                <p class="small text-body-secondary mb-0">{{ $profile['company'] }}</p>
-                @foreach ($education as $item)
-                    <p class="small text-body-secondary mb-0">{{ $item['program'] }}, {{ $item['institution'] }}</p>
-                @endforeach
+        <section class="col-lg-4">
+            <div class="tile tile-sm h-100">
+                <x-section-heading title="Focus" />
+
+                <ul class="list-unstyled mb-0">
+                    @foreach ($focusAreas as $area)
+                        <li @class(['py-3', 'border-top' => ! $loop->first, 'pt-0' => $loop->first, 'pb-0' => $loop->last])>
+                            <h3 class="h6 fw-semibold d-flex align-items-baseline gap-3 mb-1">
+                                <span class="index-number" aria-hidden="true">{{ sprintf('%02d', $loop->iteration) }}</span>
+                                {{ $area['title'] }}
+                            </h3>
+                            <p class="small text-body-secondary mb-0">{{ $area['text'] }}</p>
+                        </li>
+                    @endforeach
+                </ul>
             </div>
         </section>
     </div>
